@@ -4,6 +4,10 @@ namespace app\core;
 
 class Request
 {
+  /**
+   * Summary of getPath
+   * @return mixed
+   */
   public function getPath()
   {
     $path = $_SERVER["REQUEST_URI"] ?? '/';

@@ -9,10 +9,12 @@ class Router
   public Request $request;
   protected array $routes = array();
 
+
   public function __construct(Request $request)
   {
     $this->request = $request;
   }
+  /** */
   public function get($path, $callback)
   {
     $this->routes['get'][$path] = $callback;
@@ -32,6 +34,11 @@ class Router
     }
     return call_user_func($callback);
   }
+  /**
+   * Summary of renderView
+   * @param mixed $view
+   * @return void
+   */
   public function renderView($view)
   {
     include_once __DIR__ . "/../views/$view.php";
