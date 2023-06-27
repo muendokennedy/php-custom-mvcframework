@@ -27,7 +27,7 @@ class Field
         <div class="error-text">%s</div>
       </div>
     ', $this->model->hasError($this->attribute) ? ' error' : '',
-    ($label != 'ConfirmPassword') ? "Enter {$label}" : "Confirm your password",
+    ($label != 'ConfirmPassword') ? "Enter {$label}" : "Confirm your Password",
     $this->type,
     $this->attribute, 
     $this->model->{$this->attribute},

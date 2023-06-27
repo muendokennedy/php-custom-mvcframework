@@ -1,3 +1,7 @@
+<?php
+use app\core\Application;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -152,6 +156,17 @@
   .not-found {
     font-size: 2.5rem;
   }
+  .alert-success{
+      background: #C5FFE4;
+      color: #00CF6E;
+      text-align: center;
+      padding: 1.4rem 0;
+      font-size: 1.6rem;
+      width: 50rem;
+      margin: 0.8rem auto;
+      border-radius: 0 0 0 .4rem;
+      border-left: .8rem solid #00CF6E;
+  }
   </style>
 </head>
 
@@ -168,6 +183,11 @@
     </div>
   </nav>
   <section>
+      <?php if(Application::$app->session->getFlash('success')):?>
+      <div class="alert-success">
+          <?php echo Application::$app->session->getFlash('success');?>
+      </div>>
+      <?php endif; ?>
     {{content}}
   </section>
 </body>

@@ -9,6 +9,8 @@ abstract class Model
   public const RULE_MIN = 'min';
   public const RULE_MAX = 'max';
   public const RULE_MATCH = 'match';
+  public const RULE_UNIQUE = 'unique';
+
   public function loadData($data)
   {
     foreach ($data as $key => $value) {
@@ -44,6 +46,23 @@ abstract class Model
         if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
           $this->addError($attribute, self::RULE_MATCH, $rule);
         }
+        if($ruleName === self::RULE_UNIQUE){
+            $className = $rule['class'];
+            $uniqueAttr = $rule['attribute'] ?? $attribute;
+            $tableName = $className::tableName();
+            $statement = Application::$app->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttr = :attr;");
+
+            $statement->bindValue(":attr", $value);
+
+            $statement->execute();
+
+            $record = $statement->fetchObject();
+
+            if($record){
+                $this->addError($attribute, self::RULE_UNIQUE, ['field' => $attribute]);
+            }
+
+        }
       }
     }
     return empty($this->errors);
@@ -66,7 +85,8 @@ abstract class Model
       self::RULE_EMAIL => 'Enter a valid email address',
       self::RULE_MIN => 'The minimum length of this field is {min}',
       self::RULE_MAX => 'The maximum length of this field is {max}',
-      self::RULE_MATCH => 'This field must be the same as {match} field'
+      self::RULE_MATCH => 'This field must be the same as {match} field',
+      self::RULE_UNIQUE => 'This record with this {field} already exists'
     ];
   }
   public function hasError($attribute)
