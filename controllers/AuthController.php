@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\models\LoginForm;
@@ -22,8 +23,9 @@ class AuthController extends Controller
     if ($request->isPost()) {
         $loginForm->loadData($request->getBody());
         if($loginForm->validate() && $loginForm->login()){
+          Application::$app->session->setFlash('success', 'You have logged in successfully');          
           $response->redirect('/');
-          return false;
+          exit;
         }
        return $this->render('login', [
            'model' => $loginForm

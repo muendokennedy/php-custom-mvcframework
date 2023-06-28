@@ -158,15 +158,16 @@ use app\core\Application;
   }
 
   .alert-success {
+    border: none;
     background: #C5FFE4;
     color: #00CF6E;
     text-align: center;
-    padding: 1.4rem 0;
+    padding: 1.4rem 2rem;
     font-size: 1.6rem;
     width: 50rem;
-    margin: 0.8rem auto;
-    border-radius: 0 0 0 .4rem;
+    margin: 1.5rem auto;
     border-left: .8rem solid #00CF6E;
+    border-radius: .6rem 0 0 .6rem;
   }
   </style>
 </head>

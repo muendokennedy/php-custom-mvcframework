@@ -11,7 +11,7 @@ class Controller
    * Summary of middlewares
    * @var \app\core\middlewares\BaseMiddleware[]
    */
-  public array $middlewares = [];
+  protected array $middlewares = [];
   public string $layout = 'main';
   public string $action = '';
   public function setLayout($layout)
@@ -26,4 +26,13 @@ class Controller
   {
      $this->middlewares[] = $middleware;
   }
+  
+
+	/**
+	 * Summary of middlewares
+	 * @return array
+	 */
+	public function getMiddlewares(): array {
+		return $this->middlewares;
+	}
 }
