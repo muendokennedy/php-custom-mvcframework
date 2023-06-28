@@ -1,5 +1,15 @@
+
+<?php
+/** @var $model User */
+
+use app\core\form\Form;
+use app\models\User;
+
+?>
+
 <div class="form-container">
-  <?php $form = \app\core\form\Form::begin('', "post"); ?>
+    <h4>Create an Account</h4>
+  <?php $form = Form::begin('', "post"); ?>
   <div class="row">
     <?php echo $form->field($model, 'firstname'); ?>
     <?php echo $form->field($model, 'lastname'); ?>
@@ -10,4 +20,4 @@
   <div class="input-box">
     <input type="submit" name="submit" value="Submit" />
   </div>
-  <?php echo \app\core\form\Form::end(); ?>
+  <?php echo Form::end(); ?>

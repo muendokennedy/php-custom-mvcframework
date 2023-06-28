@@ -3,6 +3,8 @@
 namespace app\core;
 
 
+
+
 /**
  * Summary of Application
  * @author MuendoKennedy
@@ -10,6 +12,7 @@ namespace app\core;
  */
 class Application
 {
+
   /**
    * Summary of ROOT_DIR
    * @var string
@@ -51,6 +54,23 @@ class Application
    */
   public Session $session;
 
+  /**
+   * Summary of user
+   * @var 
+   */
+  public ?Dbmodel $user;
+
+  /**
+   * Summary of userClass
+   * @var string
+   */
+  public string  $userClass;
+
+  /**
+   * Summary of __construct
+   * @param mixed $rootPath
+   * @param array $config
+   */
   public function __construct($rootPath, array $config)
   {
     self::$ROOT_DIR = $rootPath;
@@ -60,8 +80,32 @@ class Application
     $this->session = new Session();
     $this->router = new Router($this->request, $this->response);
     $this->db = new Database($config['db']);
+    $this->userClass = $config['userClass'];
+
+      $primaryValue = $this->session->get('user');
+
+      if ($primaryValue){
+          $primaryKey = $this->userClass::primaryKey();
+          $this->user = $this->userClass::findOne([$primaryKey => $primaryValue]);
+      } else {
+          $this->user = null;
+      }
+
   }
-  /**
+
+    /**
+     * Summary of isGuest
+     * @return bool
+     */
+    public static function isGuest()
+    {
+
+        
+        return !self::$app->user;
+
+    }
+
+    /**
    * Summary of run
    * @return void
    */
@@ -73,7 +117,7 @@ class Application
    * Summary of getController
    * @return Controller
    */
-  public function getController()
+  public function getController(): Controller
   {
     return $this->controller;
   }
@@ -86,4 +130,31 @@ class Application
   {
     $this->controller = $controller;
   }
+
+    /**
+     * Summary of login
+     * @param \app\core\Dbmodel $user
+     * @return bool
+     */
+    public function login(Dbmodel $user): bool
+    {
+        $this->user = $user;
+
+        $primaryKey = $user->primaryKey();
+
+        $primaryValue = $user->{$primaryKey};
+
+        $this->session->set('user', $primaryValue);
+
+        return true;
+    }
+
+    /**
+     * Summary of logout
+     * @return void
+     */
+    public function logout()
+    {
+        $this->user = null;
+    }
 }

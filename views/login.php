@@ -1,16 +1,16 @@
+<?php
+/** @var $model User */
+
+use app\core\form\Form;
+use app\models\User;
+
+?>
 <div class="form-container">
-  <form action="#" method="post">
-    <h4>Login to your account</h4>
+    <h4>Login to your Account</h4>
+    <?php $form = \app\core\form\Form::begin('', "post"); ?>
+    <?php echo $form->field($model, 'email'); ?>
+    <?php echo $form->field($model, 'password')->passwordField(); ?>
     <div class="input-box">
-      <label for="">Enter Email:</label>
-      <input type="text" name="email" />
+        <input type="submit" name="submit" value="Login" />
     </div>
-    <div class="input-box">
-      <label for="">Enter Password:</label>
-      <input type="password" name="pwd" />
-    </div>
-    <div class="input-box">
-      <input type="submit" name="submit" value="Submit" />
-    </div>
-  </form>
-</div>
+<?php echo \app\core\form\Form::end(); ?>
