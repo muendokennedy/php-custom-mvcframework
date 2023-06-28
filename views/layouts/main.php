@@ -1,6 +1,5 @@
 <?php
 use app\core\Application;
-
 ?>
 
 <!DOCTYPE html>
@@ -178,13 +177,14 @@ use app\core\Application;
       <a href="/">home</a>
       <a href="/contact">contact</a>
     </div>
-    <?php if(Application::$app->user === null):?>
+    <?php if(Application::isGuest()):?>
     <div class="right-nav">
       <a href="/register">register</a>
       <a href="/login">login</a>
     </div>
-    <?php elseif(Application::$app->user !== null): ?>
+    <?php else: ?>
     <div class="right-nav">
+      <a href="/profile">profile</a>
       <a href="/logout">Welcome <?php echo Application::$app->user->getDisplayName(); ?> (Logout)</a>
     </div>
     <?php endif; ?>

@@ -12,7 +12,11 @@ namespace app\core;
  */
 class Application
 {
-
+  /**
+   * Summary of layout
+   * @var string
+   */
+  public string $layout = 'main';
   /**
    * Summary of ROOT_DIR
    * @var string
@@ -47,7 +51,7 @@ class Application
    * Summary of controller
    * @var Controller
    */
-  public Controller $controller;
+  public ?Controller $controller = null;
   /**
    * Summary of __construct
    * @param mixed $rootPath
@@ -99,8 +103,7 @@ class Application
      */
     public static function isGuest()
     {
-
-        
+      
         return !self::$app->user;
 
     }
@@ -156,5 +159,6 @@ class Application
     public function logout()
     {
         $this->user = null;
+        $this->session->remove('user');
     }
 }
