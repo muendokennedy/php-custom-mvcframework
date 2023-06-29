@@ -2,9 +2,6 @@
 
 namespace app\core;
 
-
-
-
 /**
  * Summary of Application
  * @author MuendoKennedy
@@ -75,6 +72,7 @@ class Application
    * @param mixed $rootPath
    * @param array $config
    */
+  public View $view;
   public function __construct($rootPath, array $config)
   {
     self::$ROOT_DIR = $rootPath;
@@ -85,6 +83,7 @@ class Application
     $this->router = new Router($this->request, $this->response);
     $this->db = new Database($config['db']);
     $this->userClass = $config['userClass'];
+    $this->view = new View();
 
       $primaryValue = $this->session->get('user');
 
@@ -118,7 +117,7 @@ class Application
       echo $this->router->resolve();
     }catch(\Exception $e) {
       $this->response->setStatusCode($e->getCode());
-      echo $this->router->renderView("_error", [
+      echo $this->view->renderView("_error", [
         'exception' => $e
       ]);
     }

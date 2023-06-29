@@ -50,6 +50,10 @@ class User extends UserModel
         return ['firstname', 'lastname','email', 'status', 'password'];
     }
 
+    /**
+     * Summary of getDisplayName
+     * @return string
+     */
     public function getDisplayName(): string
     {
         return $this->firstname . ' ' . $this->lastname;
