@@ -1,6 +1,6 @@
 <?php
 use app\core\Application;
-
+/** @var $this \app\core\View */
 ?>
 
 <!DOCTYPE html>
@@ -159,16 +159,21 @@ use app\core\Application;
   }
 
   .alert-success {
+    position: absolute;
+    top: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
     border: none;
     background: #C5FFE4;
     color: #00CF6E;
     text-align: center;
     padding: 1.4rem 2rem;
     font-size: 1.6rem;
-    width: 50rem;
+    width: 80%;
     margin: 1.5rem auto;
     border-left: .8rem solid #00CF6E;
     border-radius: .6rem 0 0 .6rem;
+    transition: all .3s ease-in-out;
   }
   </style>
 </head>
@@ -199,6 +204,16 @@ use app\core\Application;
     <?php endif; ?>
     {{content}}
   </section>
+  <script>
+  const successAlert = document.querySelector(".alert-success");
+  let successContent = successAlert.textContent;
+
+  if (successContent) {
+    setTimeout(() => {
+      successAlert.style.left = "-110%";
+    }, 5000);
+  }
+  </script>
 </body>
 
 </html>

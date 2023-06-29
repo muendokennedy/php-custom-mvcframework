@@ -2,6 +2,7 @@
 use app\core\form\Form;
 use app\core\form\TextareaField;
 /** @var $this \app\core\View */
+
 /** @var $model \app\models\ContactForm */
 
 $this->title = 'Contact page';
