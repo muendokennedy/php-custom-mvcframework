@@ -13,7 +13,7 @@ class ContactForm extends Model
     return [
       'name' => [self::RULE_REQUIRED],
       'subject' => [self::RULE_REQUIRED],
-      'email' => [self::RULE_REQUIRED],
+      'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
       'message' => [self::RULE_REQUIRED]
     ];
   }

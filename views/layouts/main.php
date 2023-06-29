@@ -12,7 +12,6 @@ use app\core\Application;
   <title><?php echo $this->title; ?></title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
   <nav>
     <div class="left-nav">
