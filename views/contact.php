@@ -9,9 +9,10 @@ $this->title = 'Contact page';
 ?>
 
 <?php $form = Form::begin('', 'post')?>
-
-<?php echo $form->field($model, 'name')?>
-<?php echo $form->field($model, 'subject')?>
+<div class="row">
+  <?php echo $form->field($model, 'name')?>
+  <?php echo $form->field($model, 'subject')?>
+</div>
 <?php echo $form->field($model, 'email')?>
 <?php echo new TextareaField($model, 'message')?>
 <div class="input-box">
