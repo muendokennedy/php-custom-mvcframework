@@ -1,5 +1,6 @@
 <?php
 use app\core\Application;
+
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +9,7 @@ use app\core\Application;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The home page</title>
+  <title><?php echo $this->title; ?></title>
   <style>
   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
 

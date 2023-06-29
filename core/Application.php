@@ -59,7 +59,7 @@ class Application
    * Summary of user
    * @var 
    */
-  public ?Dbmodel $user;
+  public ?UserModel $user;
 
   /**
    * Summary of userClass
@@ -146,7 +146,7 @@ class Application
      * @param \app\core\Dbmodel $user
      * @return bool
      */
-    public function login(Dbmodel $user): bool
+    public function login(UserModel $user): bool
     {
         $this->user = $user;
 

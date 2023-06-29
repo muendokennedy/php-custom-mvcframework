@@ -1,26 +1,20 @@
-<div class="form-container">
-  <form action="#" method="post">
-    <h4>Talk to us</h4>
-    <div class="row">
-      <div class="input-box">
-        <label for="">Enter Your name:</label>
-        <input type="text" name="name" />
-      </div>
-      <div class="input-box">
-        <label for="">Enter Your subject:</label>
-        <input type="text" name="subject" />
-      </div>
-    </div>
-    <div class="input-box">
-      <label for="">Enter Email:</label>
-      <input type="text" name="email" />
-    </div>
-    <div class="input-box">
-      <label for="">Enter Your message:</label>
-      <textarea name="message" id="" cols="30" rows="10"></textarea>
-    </div>
-    <div class="input-box">
-      <input type="submit" name="submit" value="Submit" />
-    </div>
-  </form>
+<?php 
+use app\core\form\Form;
+use app\core\form\TextareaField;
+/** @var $this \app\core\View */
+/** @var $model \app\models\ContactForm */
+
+$this->title = 'Contact page';
+
+?>
+
+<?php $form = Form::begin('', 'post')?>
+
+<?php echo $form->field($model, 'name')?>
+<?php echo $form->field($model, 'subject')?>
+<?php echo $form->field($model, 'email')?>
+<?php echo new TextareaField($model, 'message')?>
+<div class="input-box">
+  <input type="submit" name="submit" value="Submit" />
 </div>
+<?php Form::end()?>

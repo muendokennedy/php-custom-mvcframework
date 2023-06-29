@@ -1,14 +1,16 @@
-
 <?php
 /** @var $model User */
 
 use app\core\form\Form;
-use app\models\User;
+
+/** @var $this app\core\View */
+
+$this->title = 'Create account';
 
 ?>
 
 <div class="form-container">
-    <h4>Create an Account</h4>
+  <h4>Create an Account</h4>
   <?php $form = Form::begin('', "post"); ?>
   <div class="row">
     <?php echo $form->field($model, 'firstname'); ?>

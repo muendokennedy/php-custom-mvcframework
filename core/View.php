@@ -8,8 +8,8 @@ class View
 
   public function renderView($view, $params = array())
   {
-    $layoutContent = $this->layoutContent();
     $viewContent = $this->renderOnlyView($view, $params);
+    $layoutContent = $this->layoutContent();
     $finalLayout = str_replace('{{content}}', $viewContent, $layoutContent);
     echo $finalLayout;
   }

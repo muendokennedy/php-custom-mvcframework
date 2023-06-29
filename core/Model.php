@@ -91,7 +91,7 @@ abstract class Model
       self::RULE_MIN => 'The minimum length of this field is {min}',
       self::RULE_MAX => 'The maximum length of this field is {max}',
       self::RULE_MATCH => 'This field must be the same as {match} field',
-      self::RULE_UNIQUE => 'This record with this {field} already exists'
+      self::RULE_UNIQUE => 'The user with this {field} already exists'
     ];
   }
   public function hasError($attribute)
